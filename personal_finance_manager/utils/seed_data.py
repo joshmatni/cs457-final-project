@@ -1,25 +1,24 @@
 import csv
 from datetime import datetime
-from models.categories import create_category, get_category_id
-from models.transactions import add_transaction
+from models.category import Category
+from models.transaction import Transaction
 
-def seed_from_csv(user_id, csv_file):
+def seed_from_csv(user_id, account_id, csv_file):
     with open(csv_file, 'r') as f:
         reader = csv.DictReader(f)
         for row in reader:
             category_name = row['category'].strip()
-            create_category(category_name)
-            category_id = get_category_id(category_name)
+            Category.create(category_name)  # If already exists, no issue
+            cat_id = Category.get_category_id(category_name)
             
-            # Standardize date format to YYYY-MM-DD
             txn_date = row['date']
+            # Ensure date is in YYYY-MM-DD
             try:
                 dt = datetime.strptime(txn_date, '%Y-%m-%d')
             except ValueError:
-                # Try diff format if needed
                 dt = datetime.strptime(txn_date, '%m/%d/%Y')
-            
+
             transaction_type = row['transaction_type'].strip().lower()
             amount = float(row['amount'])
 
-            add_transaction(user_id, category_id, transaction_type, amount, dt.date())
+            Transaction.add_transaction(user_id, account_id, cat_id, transaction_type, amount, dt.date())

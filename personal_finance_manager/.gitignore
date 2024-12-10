@@ -2,3 +2,4 @@ PS_20174392719_1491204439457_log.csv
 __pycache__
 utils/processed_transactions.csv
 utils/splitted_files
+.DS_Store

@@ -1,6 +1,6 @@
 import math
 
-def split_csv(input_file, output_prefix, num_files=50):
+def split_csv(input_file, output_prefix, num_files=30):
     # Step 1: Count total lines in input file
     with open(input_file, 'r', encoding='utf-8', newline='') as f:
         total_lines = sum(1 for line in f)
@@ -42,7 +42,7 @@ def split_csv(input_file, output_prefix, num_files=50):
 
 if __name__ == "__main__":
 
-    input_file = "processed_transactions.csv"
-    output_prefix = "split_data"    # The prefix for the output CSV files
+    input_file = "splitted_files/split_data_1.csv"
+    output_prefix = "split_data_demo"    # The prefix for the output CSV files
     num_files = 50                 
     split_csv(input_file, output_prefix, num_files)

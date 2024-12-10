@@ -57,6 +57,24 @@ class Database:
             monthly_limit NUMERIC(12, 2)
         );
         """)
+        
+        # After creating the budgets table:
+        cur.execute("""
+        CREATE TABLE IF NOT EXISTS budgets (
+            budget_id SERIAL PRIMARY KEY,
+            user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
+            category_id INT REFERENCES categories(category_id) ON DELETE CASCADE,
+            monthly_limit NUMERIC(12, 2)
+        );
+        """)
+
+        # Add the unique constraint for (user_id, category_id) if it doesn't already exist
+        cur.execute("""
+        CREATE UNIQUE INDEX IF NOT EXISTS idx_user_category_unique 
+        ON budgets(user_id, category_id);
+        """)
+
+
 
         # Create transactions table with account_id reference
         cur.execute("""

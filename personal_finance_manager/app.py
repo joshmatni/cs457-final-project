@@ -1,3 +1,7 @@
+# Joshua Matni
+# CS 457 Database Management Systems Final Project!
+# Personal Finance Manager
+
 import sys
 import os
 from tabulate import tabulate

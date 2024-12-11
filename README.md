@@ -29,3 +29,28 @@ A Python-based CLI application to manage personal finances, including transactio
    ```bash
    git clone https://github.com/yourusername/personal_finance_manager.git
    cd personal_finance_manager
+   ```
+
+2. **Install Dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Database Setup:**
+   
+   Initialize PostgreSQL Database:
+   ```bash
+   # Switch to postgres user
+   sudo su - postgres
+
+   # Create database
+   createdb personal_finance_db
+
+   # Exit postgres user shell
+   exit
+   ```
+
+4. **Run Application:**
+   ```bash
+   python3 app.py
+   ```
